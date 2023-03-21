@@ -15,7 +15,7 @@ svovelheksafluorid = []
 
 utslipp_1990 = []
 utslipp_1991 = []
-
+utslipp_1992 = []
 #slice for å skrive ut verdiene fra 1990-2021
 s = slice(0, 32)
 
@@ -37,6 +37,7 @@ with open(filnavn, encoding="iso-8859-1") as fil:
             karbondioksid.append(int(rad[5]))
         elif rad[2] == 'K12 Metan (CH4)':
             metan.append(int(rad[5]))
+            
         elif rad[2] == 'K13 Lystgass (N2O)':
             lystgass.append(int(rad[5]))
         elif rad[2] == 'K80 Hydrofluorkarboner (HFK)':
@@ -45,38 +46,24 @@ with open(filnavn, encoding="iso-8859-1") as fil:
             perflurokarboner.append(int(rad[5]))
         elif rad[2] == 'K95 Svovelheksafluorid (SF6)':
             svovelheksafluorid.append(int(rad[5]))
-                        
+            
         if rad[3] == '1990':
             utslipp_1990.append(int(rad[5]))
         elif rad[3] == '1991':
             utslipp_1991.append(int(rad[5]))
+        elif rad[3] == '1992':
+            utslipp_1992.append(int(rad[5]))
         
-            
-        
-            
+                
             
             
-               
+#print(utslipp_1990)
+#print(utslipp_1991)
+#print(utslipp_1992)
+
 #printer ut og tar med "s" variablen som gjør at listen ikke printer ut alle verdiene i csv filen
 #print("år: ", aarstall[s])
 #print("Klimagasser: ", klimagasser[s])
 #print("Karbondioksid: ", karbondioksid[s])
 #print("Metan: ", metan[s])
-
-
 #bruker "s" variablen for å gjøre grafen riktig her også   
-plt.plot(aarstall[s], klimagasser[s], aarstall[s], karbondioksid[s], aarstall[s], metan[s])
-plt.xlabel("Årstall")
-plt.ylabel("1000 tonn")
-plt.grid()
-plt.gca().legend(('Klimagasser', 'Karbondioksid', "Metan"))
-plt.show()
-
-plt.plot(aarstall[s], lystgass[s], aarstall[s], hydrofluorkarboner[s], aarstall
-         [s], perflurokarboner[s], aarstall[s], svovelheksafluorid[s])
-
-plt.xlabel("Årstall")
-plt.ylabel("1000 tonn")
-plt.grid()
-plt.gca().legend(('Lystgass', 'Hydrofluorkarboner', "Perfluorkarboner", "Svovelheksafluorid"))
-plt.show()
