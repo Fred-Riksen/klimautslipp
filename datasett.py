@@ -13,6 +13,9 @@ hydrofluorkarboner = []
 perflurokarboner = []
 svovelheksafluorid = []
 
+utslipp_1990 = []
+utslipp_1991 = []
+
 #slice for å skrive ut verdiene fra 1990-2021
 s = slice(0, 32)
 
@@ -22,9 +25,9 @@ with open(filnavn, encoding="iso-8859-1") as fil:
     overskrifter = next(filinnhold)
     print(overskrifter)
     
-    #her lages en loop som leser gjennom HELE csv filen
+    #her lages en loop som leser gjennom hele csv filen
     for rad in filinnhold:
-        if rad[5] == '.' or rad[5] == '-': #Siden det er punktum i csv fil for verdiene skal loopen ignorere hver gang det kommer punktum.
+        if rad[5] == '.' or rad[5] == '-': #Hvis loopen finner noe som ikke er tallverdi vil det bli ignorert.
             continue
         #looper radene og legger til verdiene med "int" parameter for klimagasser, karbondioksid og metan i egne lister
         if rad[2] == 'A10 Klimagasser i alt':
@@ -42,17 +45,23 @@ with open(filnavn, encoding="iso-8859-1") as fil:
             perflurokarboner.append(int(rad[5]))
         elif rad[2] == 'K95 Svovelheksafluorid (SF6)':
             svovelheksafluorid.append(int(rad[5]))
+                        
+        if rad[3] == '1990':
+            utslipp_1990.append(int(rad[5]))
+        elif rad[3] == '1991':
+            utslipp_1991.append(int(rad[5]))
+        
+            
+        
             
             
             
-            
-            
-            
+               
 #printer ut og tar med "s" variablen som gjør at listen ikke printer ut alle verdiene i csv filen
-print("år: ", aarstall[s])
-print("Klimagasser: ", klimagasser[s])
-print("Karbondioksid: ", karbondioksid[s])
-print("Metan: ", metan[s])
+#print("år: ", aarstall[s])
+#print("Klimagasser: ", klimagasser[s])
+#print("Karbondioksid: ", karbondioksid[s])
+#print("Metan: ", metan[s])
 
 
 #bruker "s" variablen for å gjøre grafen riktig her også   
